@@ -127,7 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ball.cpp" />
     <ClCompile Include="ping_pong.cpp" />
+    <ClCompile Include="rocket.cpp" />
+    <ClCompile Include="work.cpp" />
+    <ClCompile Include="writting_field_and_another_function.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ball.h" />
+    <ClInclude Include="rocket.h" />
+    <ClInclude Include="work.h" />
+    <ClInclude Include="writting_field_and_another_function.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
