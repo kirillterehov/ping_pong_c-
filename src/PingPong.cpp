@@ -1,40 +1,41 @@
-#include "../include/Helper.h"
+#include "../include/PingPong.h"
 
 #include <iostream>
 
 #include "../include/Variables.h"
 
 using namespace std;
+using namespace helperVar;
 
-void Helper::cleaner() {  // a function that prints 10 line breaks
+void PingPong::cleaner() {  // a function that prints 10 line breaks
 	for (int i = 0; i < 10; i++) {
 		cout << endl;
 	}
 }
 
-int Helper::writting_field(Work_with_rockets left_rocket,
+int PingPong::writting_field(Work_with_rockets left_rocket,
 	Work_with_rockets right_rocket, int position_ball_x,
 	int position_ball_y) {  // field rendering function
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			if (i == 0 || i == height - 1) {  // drawing the upper and lower borders
+	for (int i = 0; i < HEIGHT; i++) {
+		for (int j = 0; j < WIDTH; j++) {
+			if (i == 0 || i == HEIGHT - UPPER_BOUNDARY_OF_THE_FIELD) {  // drawing the upper and lower borders
 				cout << "-";
 			}
-			else if (j == 0 || j == width - 1 ||
-				j == width / 2) {  // drawing the left and right borders and
+			else if (j == 0 || j == WIDTH - UPPER_BOUNDARY_OF_THE_FIELD ||
+				j == WIDTH / 2) {  // drawing the left and right borders and
 				// the center line
 				cout << '|';
 			}
 			else if ((i == left_rocket.get_position() ||
-				i == left_rocket.get_position() - 1 ||
-				i == left_rocket.get_position() + 1) &&
-				j == width - (width - 1)) {  // drawing the left racket
+				i == left_rocket.get_position() - PART_OF_THE_RACKET ||
+				i == left_rocket.get_position() + PART_OF_THE_RACKET) &&
+				j == HORIZONTAL_POSITION_OF_THE_LEFT_RACKET) {  // drawing the left racket
 				cout << '|';
 			}
 			else if ((i == right_rocket.get_position() ||
-				i == right_rocket.get_position() - 1 ||
-				i == right_rocket.get_position() + 1) &&
-				j == width - 2) {  // drawing the right racket
+				i == right_rocket.get_position() - PART_OF_THE_RACKET ||
+				i == right_rocket.get_position() + PART_OF_THE_RACKET) &&
+				j == WIDTH + HORIZONTAL_POSITION_OF_THE_RIGHT_RACKET) {  // drawing the right racket
 				cout << '|';
 			}
 			else if (i == position_ball_x &&
@@ -50,8 +51,8 @@ int Helper::writting_field(Work_with_rockets left_rocket,
 	return 0;
 }
 
-void Helper::check_win_player(int first_player) {  // checking the winner
-	if (first_player == 21) {
+void PingPong::check_win_player(int first_player) {  // checking the winner
+	if (first_player == SCORE) {
 		cout << "Player 1 win!";
 	}
 	else {
@@ -59,18 +60,18 @@ void Helper::check_win_player(int first_player) {  // checking the winner
 	}
 }
 
-void Helper::work() {
-	Work_with_ball ball(height / 2, width / 2);
-	Work_with_rockets left_rocket(height / 2);
-	Work_with_rockets right_rocket(height / 2);
+void PingPong::work() {
+	Work_with_ball ball(HEIGHT / 2, WIDTH / 2);
+	Work_with_rockets left_rocket(HEIGHT / 2);
+	Work_with_rockets right_rocket(HEIGHT / 2);
 	int first_player = 0;
 	int second_player = 0;
-	int position_ball_x = height / 2;
-	int position_ball_y = width / 2;
+	int position_ball_x = HEIGHT / 2;
+	int position_ball_y = WIDTH / 2;
 	int deviation_ball_x = 1;
 	int deviation_ball_y = -1;
-	while (first_player <= score || second_player <= score) {
-		if ((first_player == score) || (second_player == score)) {
+	while (first_player <= SCORE || second_player <= SCORE) {
+		if ((first_player == SCORE) || (second_player == SCORE)) {
 			check_win_player(first_player);  // checking the winner
 			break;
 		}
@@ -97,7 +98,7 @@ void Helper::work() {
 	}
 }
 
-void Helper::start_position(
+void PingPong::start_position(
 	int& position_ball_x, int& position_ball_y, Work_with_rockets& left_rocket,
 	Work_with_rockets& right_rocket,
 	Work_with_ball& ball) {  // a function that moves the rackets and the ball
@@ -116,18 +117,18 @@ void Helper::start_position(
 	// in which we change the position
 }
 
-void Helper::check_position_ball(
+void PingPong::check_position_ball(
 	int& position_ball_y, int& deviation_ball_y, int& first_player,
 	int& second_player, int& position_ball_x, Work_with_rockets& left_rocket,
 	Work_with_rockets& right_rocket,
 	Work_with_ball&
 	ball) {  // checking the exit from the field and scoring points
-	if (position_ball_y + deviation_ball_y > width - 1 ||
-		position_ball_y + deviation_ball_y < width - (width - 1)) {
-		if (position_ball_y + deviation_ball_y > width - 1) {
+	if (position_ball_y + deviation_ball_y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD ||
+		position_ball_y + deviation_ball_y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
+		if (position_ball_y + deviation_ball_y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
 			first_player++;
 		}
-		else if (position_ball_y + deviation_ball_y < width - (width - 1)) {
+		else if (position_ball_y + deviation_ball_y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
 			second_player++;
 		}
 		start_position(
@@ -136,7 +137,7 @@ void Helper::check_position_ball(
 	}
 }
 
-void Helper::position(
+void PingPong::position(
 	int& position_ball_x, int& position_ball_y, int& deviation_ball_x,
 	int& deviation_ball_y,
 	Work_with_ball& ball) {  // a function that changes the position of the ball
@@ -145,7 +146,7 @@ void Helper::position(
 	position_ball_y = ball.movement_ball(position_ball_y, deviation_ball_y);
 }
 
-void Helper::deviation(
+void PingPong::deviation(
 	int& position_ball_x, int& position_ball_y, int& deviation_ball_x,
 	int& deviation_ball_y, Work_with_ball& ball, Work_with_rockets& left_rocket,
 	Work_with_rockets& right_rocket) {  // the function responsible for checking
@@ -157,7 +158,7 @@ void Helper::deviation(
 		deviation_ball_y, right_rocket);
 }
 
-void Helper::check_key(
+void PingPong::check_key(
 	char key, Work_with_rockets& left_rocket,
 	Work_with_rockets& right_rocket) {  // the function that is responsible for
 	// the movement of the rackets

@@ -4,8 +4,8 @@
 
 class Work_with_ball {  //a class that describes functions for working with ball
 private:
-	int position_ball_x;  // the variable responsible for the ball's x position
-	int position_ball_y;  // the variable responsible for the ball's y position
+	int m_position_ball_x;  // the variable responsible for the ball's x position
+	int m_position_ball_y;  // the variable responsible for the ball's y position
 public:
 	Work_with_ball(int start_x,
 		int start_y);  // declaration class constructor Work_with_ball

@@ -3,9 +3,9 @@
 
 class Work_with_rockets {  //a class that describes functions for working with rackets
 private:
-	int position;  // the variable responsible for the rockets position
-	int check_up_rocket(int rocket);    // function declaration check_up_rocket
-	int check_down_rocket(int rocket);  // function declaration check_down_rocket
+	int m_position;  // the variable responsible for the rockets position
+	int m_check_up_rocket(int rocket);    // function declaration check_up_rocket
+	int m_check_down_rocket(int rocket);  // function declaration check_down_rocket
 
 public:
 	Work_with_rockets(

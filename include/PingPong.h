@@ -1,10 +1,10 @@
-#ifndef HELPER_H
-#define HELPER_H
+#ifndef PINGPONG_H
+#define PINGPONG_H
 
 #include "Work_with_ball.h"
 #include "Work_with_rockets.h"
 
-class Helper {  // a class that describes functions for field rendering, scoring, cleaning, and other auxiliary functions for the work function, which is responsible for executing the main part of the program
+class PingPong {  // a class that describes functions for field rendering, scoring, cleaning, and other auxiliary functions for the work function, which is responsible for executing the main part of the program
 public:
 	void cleaner();  // function declaration cleaner
 	int writting_field(
