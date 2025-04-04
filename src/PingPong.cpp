@@ -61,7 +61,8 @@ void PingPong::check_win_player(int first_player) {  // checking the winner
 }
 
 void PingPong::work() {
-	CBall ball(HEIGHT / 2, WIDTH / 2, 1, -1);
+
+	CBall ball({ HEIGHT / 2,WIDTH / 2 }, { DEVIATION_X,DEVIATION_Y });
 	CRocket left_rocket(HEIGHT / 2);
 	CRocket right_rocket(HEIGHT / 2);
 	int first_player = 0;
@@ -96,13 +97,13 @@ void PingPong::start_position(
 	CRocket& right_rocket,
 	CBall& ball) {  // a function that moves the rackets and the ball
 	// to their starting positions
-	ball.start_position();  // we take the value from the object of the
+	ball.reset_Position();  // we take the value from the object of the
 	// class Work_with_ball ball(12, 40);
 	left_rocket
-		.start_position();  // we take the value from the function start_position
+		.reset_Position();  // we take the value from the function start_position
 	// in which we change the position
 	right_rocket
-		.start_position();  // we take the value from the function start_position
+		.reset_Position();  // we take the value from the function start_position
 	// in which we change the position
 }
 

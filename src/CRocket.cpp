@@ -56,7 +56,7 @@ void CRocket::move_right_rocket(
 	}
 }
 
-void CRocket::start_position() {  // a function that moves the racket
+void CRocket::reset_Position() {  // a function that moves the racket
 	// to the starting position
 	m_position = HEIGHT / 2;
 }

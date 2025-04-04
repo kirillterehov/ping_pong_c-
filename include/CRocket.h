@@ -13,6 +13,6 @@ public:
 	int get_position() const;  // function declaration get_position
 	void move_left_rocket(char key);  // function declaration move_left_rocket
 	void move_right_rocket(char key);  // function declaration move_right_rocket
-	void start_position();             // function declaration start_position
+	void reset_Position();             // function declaration start_position
 };
 #endif

@@ -9,4 +9,6 @@ namespace helperVar
 	const int HORIZONTAL_POSITION_OF_THE_RIGHT_RACKET = -2; // right racket's width position. It is calculated by adding the width and this number.
 	const int MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD = 1; // the minimum position of the ball to go beyond the boundaries of the field.
 	const int PART_OF_THE_RACKET = 1; // the number responsible for the top and bottom of the racket
+	const int DEVIATION_X = 1; // the base deviation of the ball in x
+	const int DEVIATION_Y = -1; // the base deviation of the ball in y
 }

@@ -7,20 +7,13 @@ using namespace helperVar;
 const int TOUCHING_LEFT_RACKET_POSITION_OF_THE_BALL = 2; // the position of the ball to touch the left racket 
 const int TOUCHING_RIGHT_RACKET_POSITION_OF_THE_BALL = -3;// the position of the ball to touch the right racket. It is calculated by adding the width and this number.
 
-CBall::CBall(int start_x,
-	int start_y, int start_deviarion_x, int start_deviarion_y)
-	: position_ball{ start_x, start_y }, deviation_ball{ start_deviarion_x , start_deviarion_y }
+CBall::CBall(Coordinates position_ball,
+	Coordinates deviation_ball)
+	: position_ball{ position_ball.x, position_ball.y }, deviation_ball{ deviation_ball.x , deviation_ball.y }
 {  // constructor of the class in which we
 	// initialize the ball position
 }
 
-int CBall::movement_ball(
-	int position_ball,
-	int movement_ball) {  // a function that recalculates the position of the
-	// ball on the field
-	position_ball += movement_ball;
-	return position_ball;
-}
 
 void CBall::touching_the_walls() {  // the function of bouncing the ball from the
 	// boundaries of the field
@@ -43,8 +36,8 @@ void CBall::touching_the_rocket(
 	}
 }
 
-void CBall::start_position() {  // a function that returns the
-	// position of the ball by x
+void CBall::reset_Position() {  // a function that sets the
+	// start position of the ball
 	position_ball.x = HEIGHT / 2;
 	position_ball.y = WIDTH / 2;
 }
@@ -52,8 +45,8 @@ void CBall::start_position() {  // a function that returns the
 
 void CBall::position() {  // a function that changes the position of the ball
 	// on the field
-	position_ball.x = movement_ball(position_ball.x, deviation_ball.x);
-	position_ball.y = movement_ball(position_ball.y, deviation_ball.y);
+	position_ball.x += deviation_ball.x;
+	position_ball.y += deviation_ball.y;
 }
 
 void CBall::deviation(CRocket& left_rocket,
