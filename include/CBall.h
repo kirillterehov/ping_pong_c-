@@ -2,7 +2,7 @@
 #define BALL_H
 #include "CRocket.h"
 
-struct Ñoordinates {
+struct Coordinates {
 	int x; //Ñoordinate by x;
 	int y; //Ñoordinate by y;
 };
@@ -11,8 +11,8 @@ struct Ñoordinates {
 class CBall {  //a class that describes functions for working with ball
 private:
 public:
-	Ñoordinates position_ball;  // the variable responsible for the ball's position
-	Ñoordinates deviation_ball; // the variable responsible for the ball's deviation
+	Coordinates position_ball;  // the variable responsible for the ball's position
+	Coordinates deviation_ball; // the variable responsible for the ball's deviation
 
 
 	CBall(int start_x,
