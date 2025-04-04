@@ -128,15 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\PingPong.cpp" />
-    <ClCompile Include="src\Work_with_ball.cpp" />
-    <ClCompile Include="src\Work_with_rockets.cpp" />
+    <ClCompile Include="src\CBall.cpp" />
+    <ClCompile Include="src\CRocket.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\PingPong.h" />
     <ClInclude Include="include\Variables.h" />
-    <ClInclude Include="include\Work_with_ball.h" />
-    <ClInclude Include="include\Work_with_rockets.h" />
+    <ClInclude Include="include\CBall.h" />
+    <ClInclude Include="include\CRocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
