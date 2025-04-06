@@ -3,8 +3,8 @@
 #include "CRocket.h"
 
 struct Coordinates {
-	int x; //Ñoordinate by x;
-	int y; //Ñoordinate by y;
+	int x; //Coordinate by x;
+	int y; //Coordinate by y;
 };
 
 

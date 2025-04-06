@@ -7,6 +7,10 @@
 using namespace std;
 using namespace helperVar;
 
+PingPong::PingPong() : m_ball({ HEIGHT / 2, WIDTH / 2 }, { DEVIATION_X, DEVIATION_Y }),
+m_left_rocket(HEIGHT / 2), m_right_rocket(HEIGHT / 2), m_first_player(0), m_second_player(0) {
+
+} // initialization list of the class constructor PingPong
 void PingPong::cleaner() {  // a function that prints 10 line breaks
 	for (int i = 0; i < 10; i++) {
 		cout << endl;
@@ -61,38 +65,32 @@ void PingPong::check_win_player(int first_player) {  // checking the winner
 }
 
 void PingPong::work() {
-
-	CBall ball({ HEIGHT / 2,WIDTH / 2 }, { DEVIATION_X,DEVIATION_Y });
-	CRocket left_rocket(HEIGHT / 2);
-	CRocket right_rocket(HEIGHT / 2);
-	int first_player = 0;
-	int second_player = 0;
-	while (first_player <= SCORE || second_player <= SCORE) {
-		if ((first_player == SCORE) || (second_player == SCORE)) {
-			check_win_player(first_player);  // checking the winner
+	while (m_first_player <= SCORE || m_second_player <= SCORE) {
+		if ((m_first_player == SCORE) || (m_second_player == SCORE)) {
+			check_win_player(m_first_player);  // checking the winner
 			break;
 		}
 		char key = getchar();  // input sumbol by keyboard
 		while (getchar() != '\n');
-		check_key(key, left_rocket,
-			right_rocket);  // responsible for the movement of the rackets
-		ball.position(
+		check_key(key, m_left_rocket,
+			m_right_rocket);  // responsible for the movement of the rackets
+		m_ball.position(
 		);  // changes the position of the ball on the field
-		ball.deviation(left_rocket,
-			right_rocket);  // checking the bounce off walls and rackets
+		m_ball.deviation(m_left_rocket,
+			m_right_rocket);  // checking the bounce off walls and rackets
 		check_position_ball(
-			first_player, second_player,
-			left_rocket, right_rocket,
-			ball);  // checking the exit from the field and scoring points and moves
+			m_first_player, m_second_player,
+			m_left_rocket, m_right_rocket,
+			m_ball);  // checking the exit from the field and scoring points and moves
 		// the rackets and the ball to their starting positions
 		cleaner();  // clean field
-		cout << "first player score: " << first_player << " "
-			<< "second player score: " << second_player << endl;  // output score
-		writting_field(left_rocket, right_rocket, ball);  // writting field
+		cout << "first player score: " << m_first_player << " "
+			<< "second player score: " << m_second_player << endl;  // output score
+		writting_field(m_left_rocket, m_right_rocket, m_ball);  // writting field
 	}
 }
 
-void PingPong::start_position(
+void PingPong::reset_Position(
 	CRocket& left_rocket,
 	CRocket& right_rocket,
 	CBall& ball) {  // a function that moves the rackets and the ball
@@ -121,7 +119,7 @@ void PingPong::check_position_ball(
 		else if (ball.position_ball.y + ball.deviation_ball.y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
 			second_player++;
 		}
-		start_position(
+		reset_Position(
 			left_rocket, right_rocket,
 			ball);  // moving the rackets and the ball to the starting position
 	}
