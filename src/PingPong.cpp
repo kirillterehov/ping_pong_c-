@@ -78,10 +78,7 @@ void PingPong::work() {
 		);  // changes the position of the ball on the field
 		m_ball.deviation(m_left_rocket,
 			m_right_rocket);  // checking the bounce off walls and rackets
-		check_position_ball(
-			m_first_player, m_second_player,
-			m_left_rocket, m_right_rocket,
-			m_ball);  // checking the exit from the field and scoring points and moves
+		check_position_ball();  // checking the exit from the field and scoring points and moves
 		// the rackets and the ball to their starting positions
 		cleaner();  // clean field
 		cout << "first player score: " << m_first_player << " "
@@ -105,23 +102,18 @@ void PingPong::reset_Position(
 	// in which we change the position
 }
 
-void PingPong::check_position_ball(
-	int& first_player,
-	int& second_player, CRocket& left_rocket,
-	CRocket& right_rocket,
-	CBall&
-	ball) {  // checking the exit from the field and scoring points
-	if (ball.position_ball.y + ball.deviation_ball.y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD ||
-		ball.position_ball.y + ball.deviation_ball.y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-		if (ball.position_ball.y + ball.deviation_ball.y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-			first_player++;
+void PingPong::check_position_ball() {  // checking the exit from the field and scoring points
+	if (m_ball.position_ball.y + m_ball.deviation_ball.y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD ||
+		m_ball.position_ball.y + m_ball.deviation_ball.y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
+		if (m_ball.position_ball.y + m_ball.deviation_ball.y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
+			m_first_player++;
 		}
-		else if (ball.position_ball.y + ball.deviation_ball.y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-			second_player++;
+		else if (m_ball.position_ball.y + m_ball.deviation_ball.y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
+			m_second_player++;
 		}
 		reset_Position(
-			left_rocket, right_rocket,
-			ball);  // moving the rackets and the ball to the starting position
+			m_left_rocket, m_right_rocket,
+			m_ball);  // moving the rackets and the ball to the starting position
 	}
 }
 

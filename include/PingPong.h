@@ -23,11 +23,7 @@ public:
 	void reset_Position(
 		CRocket& left_rocket, CRocket& right_rocket,
 		CBall& ball);  // function declaration start_position
-	void check_position_ball(
-		int& first_player,
-		int& second_player, CRocket& left_rocket,
-		CRocket& right_rocket,
-		CBall& ball);  // function declaration check_position_ball
+	void check_position_ball();  // function declaration check_position_ball
 	void check_key(
 		char key, CRocket& left_rocket,
 		CRocket& right_rocket);  // function declaration check_key
