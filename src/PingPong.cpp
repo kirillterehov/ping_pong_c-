@@ -97,19 +97,24 @@ void PingPong::reset_Position(
 	// in which we change the position
 }
 
-void PingPong::check_position_ball() {  // checking the exit from the field and scoring points
-	if (m_ball.position_ball.y + m_ball.deviation_ball.y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD ||
-		m_ball.position_ball.y + m_ball.deviation_ball.y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-		if (m_ball.position_ball.y + m_ball.deviation_ball.y > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-			m_first_player++;
-		}
-		else if (m_ball.position_ball.y + m_ball.deviation_ball.y < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-			m_second_player++;
-		}
-		reset_Position(
-			);  // moving the rackets and the ball to the starting position
-	}
+int PingPong::sum_position_deviation() { // a function that returns the sum of the ball's position and deviation
+	return m_ball.position_ball.y + m_ball.deviation_ball.y;
 }
+
+void PingPong::check_position_ball() {  // checking the exit from the field and scoring points
+	int summ = sum_position_deviation(); // sum of the ball's position and deviation
+		if (summ > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
+			m_first_player++;
+			reset_Position();  // moving the rackets and the ball to the starting position
+		}
+		else if (summ < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
+			m_second_player++;
+			reset_Position();  // moving the rackets and the ball to the starting position
+		}
+		else {
+		}
+}
+
 
 
 

@@ -12,12 +12,12 @@ private:
 	int m_first_player; // The score counter of the first player
 	int m_second_player; // The score counter of the second player
 public:
+	int sum_position_deviation();// declaring a function that returns the sum of the ball's position and deviation
 	PingPong(); //declaration PingPong class constructor
 	void cleaner();  // function declaration cleaner
 	int writting_field();  // function declaration writting_field
 	void check_win_player();  // function declaration check_win_player
-	void reset_Position(
-		);  // function declaration start_position
+	void reset_Position();  // function declaration start_position
 	void check_position_ball();  // function declaration check_position_ball
 	void check_key(char key);  // function declaration check_key
 	void work();                           // function declaration work
