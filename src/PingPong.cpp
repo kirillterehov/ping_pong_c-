@@ -102,20 +102,14 @@ int PingPong::sum_position_deviation() { // a function that returns the sum of t
 }
 
 void PingPong::check_position_ball() {  // checking the exit from the field and scoring points
-	int summ = sum_position_deviation(); // sum of the ball's position and deviation
-		if (summ > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-			m_first_player++;
+	bool res1 = sum_position_deviation() > WIDTH - MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD; // checking that the sum of the position and deviation is greater than the position of the right racket 
+	bool res2 = sum_position_deviation() < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD; // checking that the sum of the position and deflection is less than the position of the left racket
+		if (res1 || res2 ) {
+			res1 ? m_first_player++ : m_second_player++; //Checks whether res1 is true. If res1 is true (the ball has gone beyond the right boundary), then increases the value of the m_first_player variable. If res1 is false, it increases the value of the m_second_player variable.
 			reset_Position();  // moving the rackets and the ball to the starting position
 		}
-		else if (summ < MINIMUM_BALL_POSITION_OUTSIDE_THE_FIELD) {
-			m_second_player++;
-			reset_Position();  // moving the rackets and the ball to the starting position
-		}
-		else {
-		}
+
 }
-
-
 
 
 void PingPong::check_key(
